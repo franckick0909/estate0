@@ -1,6 +1,7 @@
 import Map from "@/app/components/map/map";
 import Slider from "@/app/components/slider";
 import { listData, userData } from "@/app/data/listData";
+import { Metadata } from "next";
 import Image from "next/image";
 import { MdBookmark, MdChat } from "react-icons/md";
 
@@ -16,13 +17,18 @@ import {
 } from "react-icons/fa6";
 import { MdLocationOn } from "react-icons/md";
 
-type Props = {
+interface PageProps {
   params: {
     id: string;
   };
+}
+
+export const metadata: Metadata = {
+  title: "Détail de la propriété",
+  description: "Détails de la propriété immobilière",
 };
 
-export default async function Detail({ params }: Props) {
+const Detail = async ({ params }: PageProps) => {
   const data = listData.find((item) => item.id === parseInt(params.id));
   const user = userData.find((user) => user.id === parseInt(params.id));
 
@@ -331,4 +337,6 @@ export default async function Detail({ params }: Props) {
       </div>
     </div>
   );
-}
+};
+
+export default Detail;
