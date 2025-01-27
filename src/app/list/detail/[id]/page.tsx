@@ -22,7 +22,14 @@ export const metadata: Metadata = {
   description: "Détails de la propriété immobilière",
 };
 
-export default async function Page({ params }: { params: { id: string } }) {
+type SearchParams = { [key: string]: string | string[] | undefined };
+
+interface Props {
+  params: { id: string };
+  searchParams: SearchParams;
+}
+
+async function Page({ params }: Props) {
   const data = listData.find((item) => item.id === parseInt(params.id));
   const user = userData.find((user) => user.id === parseInt(params.id));
 
@@ -332,3 +339,5 @@ export default async function Page({ params }: { params: { id: string } }) {
     </div>
   );
 }
+
+export default Page;
