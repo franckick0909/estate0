@@ -2,7 +2,7 @@ import Map from "@/app/components/map/map";
 import Slider from "@/app/components/slider";
 import { listData, userData } from "@/app/data/listData";
 import Image from "next/image";
-import { MdChat, MdBookmark} from "react-icons/md";
+import { MdBookmark, MdChat } from "react-icons/md";
 
 import {
   FaBus,
@@ -16,7 +16,12 @@ import {
 } from "react-icons/fa6";
 import { MdLocationOn } from "react-icons/md";
 
-export default function Detail({ params }: { params: { id: string } }) {
+export default async function Detail({
+  params,
+}: {
+  params: { id: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
+}) {
   const data = listData.find((item) => item.id === parseInt(params.id));
   const user = userData.find((user) => user.id === parseInt(params.id));
 
@@ -114,7 +119,9 @@ export default function Detail({ params }: { params: { id: string } }) {
               <div className="space-y-2">
                 {data.energie.dpe.echelle.map((niveau) => (
                   <div key={niveau.lettre} className="flex items-center gap-2">
-                    <div className="w-8 text-sm text-gray-600">{niveau.lettre}</div>
+                    <div className="w-8 text-sm text-gray-600">
+                      {niveau.lettre}
+                    </div>
                     <div
                       className={`flex-1 h-8 ${niveau.couleur} flex items-center px-2 text-white relative`}
                     >
@@ -139,7 +146,9 @@ export default function Detail({ params }: { params: { id: string } }) {
               <div className="space-y-2">
                 {data.energie.ges.echelle.map((niveau) => (
                   <div key={niveau.lettre} className="flex items-center gap-2">
-                    <div className="w-8 text-sm text-gray-600">{niveau.lettre}</div>
+                    <div className="w-8 text-sm text-gray-600">
+                      {niveau.lettre}
+                    </div>
                     <div
                       className={`flex-1 h-8 ${niveau.couleur} flex items-center px-2 text-white relative`}
                     >
@@ -299,16 +308,16 @@ export default function Detail({ params }: { params: { id: string } }) {
           </div>
 
           <div className="flex justify-between items-center p-4 gap-2">
-          <button
+            <button
               title="Contacter"
               type="button"
-            className="w-full sm:w-auto flex items-center justify-center gap-2 border border-violet-600 text-violet-600 rounded-md p-2 hover:bg-violet-600 hover:text-white transition-colors text-sm md:text-base shadow-md"
-          >
-            <MdChat className="flex-shrink-0 text-xl" />
-            <p>Envoyer un message</p>
-          </button>
+              className="w-full sm:w-auto flex items-center justify-center gap-2 border border-violet-600 text-violet-600 rounded-md p-2 hover:bg-violet-600 hover:text-white transition-colors text-sm md:text-base shadow-md"
+            >
+              <MdChat className="flex-shrink-0 text-xl" />
+              <p>Envoyer un message</p>
+            </button>
 
-          <button
+            <button
               title="Mettre en favoris"
               type="button"
               className="w-full sm:w-auto flex items-center justify-center gap-2 border border-violet-600 text-violet-600 rounded-md p-2 hover:bg-violet-600 hover:text-white transition-colors text-sm md:text-base shadow-md"
