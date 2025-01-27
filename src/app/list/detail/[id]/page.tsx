@@ -17,18 +17,12 @@ import {
 } from "react-icons/fa6";
 import { MdLocationOn } from "react-icons/md";
 
-interface PageProps {
-  params: {
-    id: string;
-  };
-}
-
 export const metadata: Metadata = {
   title: "Détail de la propriété",
   description: "Détails de la propriété immobilière",
 };
 
-const Detail = async ({ params }: PageProps) => {
+export default async function Page({ params }: { params: { id: string } }) {
   const data = listData.find((item) => item.id === parseInt(params.id));
   const user = userData.find((user) => user.id === parseInt(params.id));
 
@@ -337,6 +331,4 @@ const Detail = async ({ params }: PageProps) => {
       </div>
     </div>
   );
-};
-
-export default Detail;
+}
