@@ -16,12 +16,13 @@ import {
 } from "react-icons/fa6";
 import { MdLocationOn } from "react-icons/md";
 
-export default async function Detail({
-  params,
-}: {
-  params: { id: string };
-  searchParams?: { [key: string]: string | string[] | undefined };
-}) {
+type Props = {
+  params: {
+    id: string;
+  };
+};
+
+export default async function Detail({ params }: Props) {
   const data = listData.find((item) => item.id === parseInt(params.id));
   const user = userData.find((user) => user.id === parseInt(params.id));
 
